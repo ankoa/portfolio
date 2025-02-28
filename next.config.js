@@ -1,10 +1,11 @@
 const path = require("path");
 
-module.exports = {
-  sassOptions: {
-    includePaths: [path.join(__dirname, "styles")],
-  },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: "export", // Xuất HTML tĩnh thay vì SSR
+  basePath: "/github-portfolio", // Đổi theo tên repository của bạn
   images: {
+    unoptimized: true, // Vì GitHub Pages không hỗ trợ Image Optimization
     domains: [
       "media.dev.to",
       "avatars.githubusercontent.com",
@@ -16,4 +17,9 @@ module.exports = {
     ],
     dangerouslyAllowSVG: true,
   },
+  sassOptions: {
+    includePaths: [path.join(__dirname, "styles")],
+  },
 };
+
+module.exports = nextConfig;
